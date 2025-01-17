@@ -16,7 +16,7 @@
     border-radius: 20px;
 }
 
-.display {
+.display_global {
     display: flex;
     justify-content: flex-end;
     align-items: flex-end;
@@ -30,7 +30,7 @@
     font-size: 80px;
 }
 
-.display span {
+.display {
     padding-right: 20px;
 }
 
@@ -48,7 +48,7 @@
     align-items: center;
 }
 
-.number {
+li {
     display: flex;
     justify-content: center;
     align-items: center;
