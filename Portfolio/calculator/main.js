@@ -2,12 +2,12 @@ let numberBtn = document.querySelectorAll('.number')
 let signBtn = document.querySelectorAll('.sign')
 let displayNum = document.querySelector('.display')
 let deleteBtn = document.querySelector('.delete')
+let plusMinus = document.querySelector('.plus_minus')
 
 let plusBtn = document.querySelector('.plus')
 let minusBtn = document.querySelector('.minus')
 let umnoBtn = document.querySelector('.umno')
 let delenieBtn = document.querySelector('.del')
-
 
 
 let total = document.querySelector('.total')
@@ -41,9 +41,6 @@ numberBtn.forEach(item => {
 
             displayNum.innerText = b
 
-            console.log(a)
-            console.log(b)
-            console.log(sign)
         }
 
     })
@@ -63,7 +60,6 @@ signBtn.forEach(item => {
 
 
 total.addEventListener('click', () => {
-    console.log(sign)
     switch(sign) {
         case '+': 
             total = (+a) + (+b)
