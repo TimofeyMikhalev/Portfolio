@@ -64,6 +64,50 @@ console.log(MathUtils.add(10, 5))
 
 
 //5. Приватные свойства
+class BankAccount {
+    #balance
+
+    constructor(balance) {
+        this.#balance = balance
+    }
+
+    getDeposit(ammount) {
+        if(ammount > 0) {
+            this.#balance += ammount
+        }
+    }
+    
+    getBalance() {
+        return this.#balance
+    }
+}
+
+const account = new BankAccount(100)
+account.getDeposit(50);
+console.log(account.getBalance()); 
+
+
+//6. Геттеры и сеттеры
+class Rectangle {
+    constructor(width, height) {
+        this.width = width
+        this.height = height
+    }
+
+    get area() {    
+        this.width * this.height
+    }
+
+    set area(width) {
+        if(width >= 0) {
+            return width
+        } else {
+            
+        }
+    }
+}
 
 
 
+const rect = new Rectangle(10, 20);
+console.log(rect.area); // 200
