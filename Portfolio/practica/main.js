@@ -558,25 +558,102 @@ student.addGrade(3);
 
 //7 Задача:
 
-async function getUsers() {
-    try {
-        // Получаем список пользователей
-        let getId = await fetch('https://jsonplaceholder.typicode.com/users')
-        let result = await getId.json()
+// async function getUsers() {
+//     try {
+//         // Получаем список пользователей
+//         let getId = await fetch('https://jsonplaceholder.typicode.com/users')
+//         let result = await getId.json()
 
-        for(let key of result) {
-            // Получаем список постов для каждого пользователя
-            let getPost = await fetch(`https://jsonplaceholder.typicode.com/users/${key.id}/posts`)
-            let resultPost = await getPost.json()
+//         for(let key of result) {
+//             // Получаем список постов для каждого пользователя
+//             let getPost = await fetch(`https://jsonplaceholder.typicode.com/users/${key.id}/posts`)
+//             let resultPost = await getPost.json()
 
-           // Выводим имя пользователя и количество постов
-            console.log(`User: ${key.name}, Posts: ${resultPost.length}`)
-        }
+//            // Выводим имя пользователя и количество постов
+//             console.log(`User: ${key.name}, Posts: ${resultPost.length}`)
+//         }
     
-    }
-    catch(error) {
-        console.log('Ошибка!', error);
-    }
-}
+//     }
+//     catch(error) {
+//         console.log('Ошибка!', error);
+//     }
+// }
 
-getUsers()
+// getUsers()
+
+
+
+
+//замыкание
+//1
+// function createCounter() {
+//     let count = 0; // Переименовали переменную для ясности
+
+//     return function() {
+//         console.log(++count);
+//     };
+// }
+
+// let counter = createCounter();
+// counter(); // 1
+// counter(); // 2
+// counter(); // 3
+
+
+//2
+// function greeting(name) {
+//     return function sayHello() {
+//         console.log(`Hello, ${name}`)
+//     }
+// }
+
+// const sayHello = greeting("Alice");
+// sayHello(); // "Hello, Alice!"
+
+
+//3
+// function multiplyBy(num) {
+//     return function double(sum) {
+//         return num * sum
+//     }
+// }
+
+// const double = multiplyBy(2);
+// console.log(double(5)); // 10
+
+
+//4
+// function createPrivateCounter() {
+//     let count = 0;
+//     return {
+//         increment() {
+//             count++
+//         },
+//         getCount() {
+//             return count
+//         }
+//     }
+   
+// }
+
+// const counter = createPrivateCounter();
+// counter.increment();
+// counter.increment();
+// console.log(counter.getCount()); 
+
+
+// //5
+// function cacheFunction(fn) {
+
+// }
+
+// function slowSquare(n) {
+//     console.log("Вычисляем...");
+//     return n * n;
+// }
+
+// const cachedSquare = cacheFunction(slowSquare);
+
+// console.log(cachedSquare(4)); // "Вычисляем..." -> 16
+// console.log(cachedSquare(4)); // 16 (без вычислений)
+// console.log(cachedSquare(5)); // "Вычисляем..." -> 25

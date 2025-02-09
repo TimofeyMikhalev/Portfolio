@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <main class="main">
+        <div class="container">
+
+            <form id="register" class="register">
+                <div class="title">Register</div>
+
+                <div class="input-container ic">
+                    <input id="username" type="text" name="username" class="input" placeholder="Username">              
+                </div>
+                <div class="input-container ic2">    
+                    <input id="e-mail" type="text" name="e-mail" class="input" placeholder="E-mail">
+                </div>
+                <div class="input-container ic3">
+                    <input id="phone" type="tel" name="phone" class="input" placeholder="Phone">
+                </div>
+                <div class="input-container ic4">            
+                    <input id="password" type="password" name="password" class="input" placeholder="Password">
+                </div>
+                <div class="input-container ic5">         
+                    <input id="confirm-password" type="password" name="returnPassword" class="input" placeholder="Confirm password">
+                </div>
+                <button type="submit" class="button">submit</button>
+                <div id="loader" class="hidden">Отправляем...</div>
+            </form>
+
+        </div>
+    </main>
+
+
+
+    <script type="module" src="main.js"></script>
+</body>
+</html>
+
