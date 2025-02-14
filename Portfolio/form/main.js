@@ -36,6 +36,7 @@ function onSuccess(formNode) {
 
 async function handleFormSubmit(event) {
     event.preventDefault();
+    
     const data = serializeForm(event.target)
 
     toggleLoader()
@@ -48,6 +49,7 @@ async function handleFormSubmit(event) {
         onError(error)
     }
 }
+
 function onError(error) {
     alert(error.message)
 }
