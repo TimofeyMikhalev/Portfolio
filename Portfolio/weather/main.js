@@ -270,18 +270,213 @@ let salaries = {
 
 
 
-const makePizza = function(title, cd) {
-    console.log(`Заказ получен ${title}`)
-    setTimeout(cd, 3000)
+// const makePizza = function(title, cd) {
+//     console.log(`Заказ получен ${title}`)
+//     setTimeout(cd, 3000)
+// }
+
+// const readBooks = function() {
+//     console.log('Читаю книгу «Колдун и кристалл»…');
+// }
+
+// const eatPizza = function() {
+//     console.log('Ура! Пицца готова, пора подкрепиться.');
+// }
+
+// makePizza('Piperonia', eatPizza)
+// readBooks()
+
+
+// const doHomework = (subject, callback) => {
+//     console.log(`Starting my ${subject} homework.`);
+//     callback()
+// }
+
+const doHomework = (subject, callback) => {
+    console.log(`Starting my ${subject} homework.`);
+    callback()
 }
 
-const readBooks = function() {
-    console.log('Читаю книгу «Колдун и кристалл»…');
+
+// doHomework('math', () => {
+//     alert('Finished my homework');
+// });
+
+const alertFinished = () => {
+    console.log('Finished my homework')
 }
 
-const eatPizza = function() {
-    console.log('Ура! Пицца готова, пора подкрепиться.');
+doHomework('math', alertFinished)
+
+
+///Написать функцию с callback’ом, которая загружает данные с задержкой.
+
+const devDoc = (name, fun) => {
+    console.log('Данные загружаются')
+    setTimeout(fun, 3000)
 }
 
-makePizza('Piperonia', eatPizza)
-readBooks()
+const finshBook = () => {
+    console.log('Данные загруженны')
+}
+
+devDoc('Tom Soer', finshBook)
+
+
+//Задача 1: Функция обратного вызова
+function processArray(arr, callback) {
+    let arrayNew = []
+
+    for(let i = 0; i < arr.length;i++ ) {
+        arrayNew.push(callback(arr[i]))
+    }
+
+    return arrayNew
+}
+
+const numbersi = [1, 2, 3, 4];
+const double = processArray(numbersi, (num) => num * 2)
+// console.log(double)
+
+
+//Задача 2: Фильтрация массива
+function filterArray(arr, callback) {
+    let result = []
+
+    for(let i = 0; i < arr.length;i++) {
+        if(callback(arr[i])) {
+            result.push(arr[i])
+        }
+    }
+
+    return result
+}
+
+// Пример использования:
+const numbersu = [1, 2, 3, 4, 5];
+const evens = filterArray(numbersu, (num) => num % 2 === 0);
+console.log(evens); // [2, 4]
+
+
+//Задача 3: Асинхронная обработка
+// function fetchData(url, callback) {
+//     setTimeout(() => {
+//         // Имитация получения данных
+//         const data = { message: 'Данные получены с ' + url };
+//         callback(data);
+//     }, 1000);
+// }
+
+
+
+// // Пример использования:
+// fetchData('https://api.example.com/data', (data) => {
+//     console.log(data); // { message: 'Данные получены с https://api.example.com/data' }
+// });
+
+
+//Задача 4: Сортировка массива
+function sortArray(arr, compareFunction) {
+    return arr.sort(compareFunction)
+}
+
+// Пример использования:
+const numbe = [5, 3, 8, 1];
+const sortedNumbers = sortArray(numbe, (a, b) => a - b);
+console.log(sortedNumbers); // [1, 3, 5, 8]
+
+
+//Задача 5: Уведомление
+
+function notify(message, collback, interval) {
+    setTimeout(() => {
+        collback(message)
+    }, interval)
+}
+
+// Пример использования:
+notify('Время!', (msg) => {
+    console.log(msg); // 'Время!' через заданный интервал
+}, 2000);
+
+
+
+//Promises
+
+// const promise = new Promise(function(resolve, reject) {
+//     // Делаем асинхронную операцию:
+//     // Запрос текущего местоположения устройства.
+//     // В случае успешного выполнения запроса
+//     // колбэк-функция получит данные о местоположении.
+//     navigator.geolocation.getCurrentPosition(function(data){
+//         // Переводим промис в состояние fulfilled.
+//         // Результат выполнения — объект data 
+//         resolve(data)
+//     })
+// })
+
+// const errorPromise = new Promise(function (resolve, reject) {
+//     // Переводим промис в состояние rejected.
+//     // Результат выполнения — объект Error
+//     reject(new Error('Error'))
+// })
+
+
+
+// function getData(onSuccess, onError) {
+//     setTimeout(function() {
+//         const result = Math.random()
+//         if(result > 0.5 ) {
+//             onSuccess(result)
+//         }
+//         else {
+//             onError(new Error('Error'))
+//         }
+//     }, 1000)
+// }
+
+// function promisifieldGetData() {
+//     return new Promise(function(resolve, reject) {
+//         getData(
+//             function(result) {
+//                 resolve(result)
+//             },
+//             function(error) {
+//                 reject(error)
+//             }
+//         )
+//     })
+// }
+
+// promisifieldGetData()
+//     .then(function() {
+//         console.log('true')
+//     })
+//     .catch(function(error) {
+//         console.error(error.message)
+//     })
+
+
+let resultPromise = new Promise(function(resolve, reject){
+    setTimeout(() => {
+        resolve('Good')
+        reject('Error')
+    }, 4000)
+
+})
+
+resultPromise
+    .then((value) => { console.log(value) })
+    .catch((error) => { console.error(error.message) })
+
+
+
+
+function delay(ms) {
+    // ваш код
+    return new Promise(resolve => {
+        setTimeout(resolve, ms)
+    })
+}
+    
+delay(3000).then(() => alert('выполнилось через 3 секунды'));
