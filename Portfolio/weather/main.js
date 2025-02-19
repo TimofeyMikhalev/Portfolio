@@ -457,26 +457,239 @@ notify('Время!', (msg) => {
 //     })
 
 
-let resultPromise = new Promise(function(resolve, reject){
+// let resultPromise = new Promise(function(resolve, reject){
+//     setTimeout(() => {
+//         resolve('Good')
+//         reject('Error')
+//     }, 4000)
+
+// })
+
+// resultPromise
+//     .then((value) => { console.log(value) })
+//     .catch((error) => { console.error(error.message) })
+
+
+
+
+// function delay(ms) {
+//     // ваш код
+//     return new Promise(resolve => {
+//         setTimeout(resolve, ms)
+//     })
+// }
+    
+// delay(3000).then(() => console.log('выполнилось через 3 секунды'));
+
+
+
+// new Promise(resolve => resolve())
+//     .then(() => {
+//     console.log(1);
+//     return new Promise(resolve => resolve());
+// })
+// .then(() => console.log(2));
+
+// new Promise(resolve => resolve())
+//     .then(() => console.log(3))
+//     .then(() => console.log(4))
+//     .then(() => console.log(5));
+
+
+
+
+// function gigiData() {
+//     return new Promise((resolve) => {
+//             setTimeout(() => {
+//                 resolve('hi')
+//             }, 3000)
+//         }
+//     )
+// }
+
+// gigiData()
+//     .then((res) => {
+//         console.log(res)
+//     })
+
+
+
+// // const keepBeck = new Promise(function(resolve, reject) {
+// //     setTimeout(() => console.log('hix'), 3000)
+// // }) 
+
+// // keepBeck
+// //     .then((res) => console.log(res))
+
+
+
+// let ageYear = Math.random()
+
+// const ageRundom = new Promise(function(resolve, reject) {   
+//     setTimeout(() => {
+//         if(ageYear > 0.5) {
+//             resolve('Проходишь!')
+//         } else {
+//             reject('Не проходишь!')
+//         }
+//     }, 2000)
+// })
+
+// ageRundom
+//     .then((go) => console.log(go))
+//     .catch((er) => console.log(er))
+
+
+// const getDatas = new Promise((resolve, reject) => {
+//     setTimeout(() => {
+//         resolve('Данные обрабатываются!')
+//         reject('Ошибка в получении данных!')
+//     }, 1000)
+
+// })
+
+// getDatas
+//     .then((one) => console.log(one))
+//     .then(() => setTimeout(() => {
+//         console.log('Данные загружеены!')
+//     }, 500))
+//     .catch((three) => console.log(three))
+
+
+//     const myName = new Promise((resolve, reject) => {
+//         setTimeout(() => {
+//             resolve('Tim')
+//         }, 1000)
+//     })
+
+//     const mySurname = new Promise((resolve, reject) => {
+//         setTimeout(() => {
+//             resolve('Mikhalev')
+//         }, 1000)
+//     })
+
+
+//     const myBirth = new Promise((resolve, reject) => {
+//         setTimeout(() => {
+//             resolve('05.02.1999')
+//         }, 1000)
+//     })
+
+//     Promise.all([myName, mySurname, myBirth])
+//         .then((data) => { 
+//             const [name, surname, birth] = data;
+//             console.log(`Имя: ${name}, Фамилия: ${surname}, Дата рождения: ${birth}`)
+//          })
+
+
+
+
+// async function getMainActorProfileFromMovie() {
+//     try {
+//         const getMovie = await fetch(`https://jsonplaceholder.typicode.com/users`)
+//         const movie = await getMovie.json()
+//         return movie
+//     } catch(err) {
+//         console.error('Error', err)
+//     }
+// }
+
+// getMainActorProfileFromMovie()
+//     .then((user) => {
+//         console.log(user[0])
+//     })
+
+
+
+//4
+// async function fetchData() {
+//     try {
+//         const dann = await fetch('https://jsonplaceholder.typicode.com/users')
+//         const users = await dann.json()
+
+//         return users
+//     } catch (error) {
+//         console.error('Error', error)
+//     }
+// }
+
+// fetchData
+//     .then((i) => {
+//         console.log(i)
+//     })
+
+
+
+//2
+let oneSup = new Promise(function(resolve, reject) {
     setTimeout(() => {
-        resolve('Good')
-        reject('Error')
-    }, 4000)
+        resolve('1')
+    }, 1000)
+})  
+let twoSup = new Promise(function(resolve, reject) {
+    setTimeout(() => {
+        resolve('2')
+    }, 2000)
+})  
+let threeSup = new Promise(function(resolve, reject) {
+    setTimeout(() => {
+        resolve('3')
+    }, 3000)
+})  
 
-})
-
-resultPromise
-    .then((value) => { console.log(value) })
-    .catch((error) => { console.error(error.message) })
 
 
+async function fetchAllData() {
+    return await Promise.all([oneSup, twoSup, threeSup])
+       
+}
+fetchAllData()
+    .then((value) => {
+        console.log(value)
+    })
+
+//
+// Имитация задержек
+// function delay(ms, value) {
+//     return new Promise((resolve) => {
+//         setTimeout(() => {
+//             resolve(value);
+//         }, ms);
+//     });
+// }
+
+// // Функция для получения всех данных
+// async function fetchAllData() {
+//     const results = await Promise.all([
+//         delay(1000, 'Result 1'),
+//         delay(2000, 'Result 2'),
+//         delay(3000, 'Result 3'),
+//     ]);
+//     console.log(results);
+// }
+
+// fetchAllData();
 
 
-function delay(ms) {
-    // ваш код
-    return new Promise(resolve => {
-        setTimeout(resolve, ms)
+//7
+
+function processNumber(num) {
+    return new Promise((resolve) => {
+        setTimeout(() => {
+            resolve(num * 2)
+        }, 1000)
     })
 }
-    
-delay(3000).then(() => alert('выполнилось через 3 секунды'));
+
+async function processData(numbers) {
+    const result = []
+
+    for(let key of numbers) {
+        const ki = await processNumber(key)
+        result.push(ki)
+    }
+    return result
+}
+
+processData([1, 3, 5, 2, 6, 8])
+    .then((res) => console.log(res))
