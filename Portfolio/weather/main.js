@@ -673,23 +673,216 @@ fetchAllData()
 
 //7
 
-function processNumber(num) {
-    return new Promise((resolve) => {
+// function processNumber(num) {
+//     return new Promise((resolve) => {
+//         setTimeout(() => {
+//             resolve(num * 2)
+//         }, 1000)
+//     })
+// }
+
+// async function processData(numbers) {
+//     const result = []
+
+//     for(let key of numbers) {
+//         const ki = await processNumber(key)
+//         result.push(ki)
+//     }
+//     return result
+// }
+
+// processData([1, 3, 5, 2, 6, 8])
+//     .then((res) => console.log(res))
+
+
+
+
+//
+function delayedPrint(str, ms) {
+    return new Promise(resolve => {
         setTimeout(() => {
-            resolve(num * 2)
-        }, 1000)
+            console.log(str)
+            resolve()
+        }, ms)
     })
 }
 
-async function processData(numbers) {
-    const result = []
+delayedPrint('Tima', 2000)
 
-    for(let key of numbers) {
-        const ki = await processNumber(key)
-        result.push(ki)
-    }
-    return result
+
+//
+function fetchData(id) {
+    return new Promise(resolve => {
+        setTimeout(() => {
+            resolve(id)
+        }, 2000)
+    })    
 }
 
-processData([1, 3, 5, 2, 6, 8])
-    .then((res) => console.log(res))
+async function main() {
+    let pups = await Promise.all([fetchData(1), fetchData(2), fetchData(3)])
+    console.log(pups)
+}   
+
+
+//
+// async function loadJson(url) {
+//     let sait = await fetch(url)
+
+//     if(sait.status == 200) {
+//         let json = await sait.json();
+//         return json
+//     } 
+    
+//     throw new Error(sait.status);
+
+// }
+// loadJson('no-such-user.json')
+//   .catch(alert); 
+
+
+//
+
+// async function wait() {
+//     await new Promise(resolve => setTimeout(resolve, 1000));
+  
+//     return 10;
+// }
+  
+// function f() {
+//     wait().then(result => console.log(result))
+// }
+
+// f()
+
+
+//
+
+// class HttpError extends Error {
+//     constructor(response) {
+//       super(`${response.status} for ${response.url}`);
+//       this.name = 'HttpError';
+//       this.response = response;
+//     }
+// }
+  
+// async function loadJson(url) {
+//     let result = await fetch(url)
+
+//     if (result.status == 200) {
+//         let json = result.json();
+//         return json
+//     } 
+//     throw new HttpError(result);
+// }
+  
+// Запрашивать логин, пока github не вернёт существующего пользователя.
+// async function demoGithubUser() {
+
+//     let user;
+//     while(true) {
+//         let name = prompt("Введите логин?", "iliakan");
+  
+//         try {
+//             user = await loadJson(`https://api.github.com/users/${name}`)
+//             break
+//         } catch(err) {
+//             if (err instanceof HttpError && err.response.status == 404) {
+//                 alert("Такого пользователя не существует, пожалуйста, повторите ввод.");
+//             } else {
+//                 throw err;
+//             }
+//         }
+//     }
+    
+//     console.log(user.name)
+//     return user;
+ 
+// }
+  
+// demoGithubUser();
+
+
+
+//fetch
+
+
+
+// let promise = await fetch('https://jsonplaceholder.typicode.com/users')
+  
+// if(promise.ok) {
+//     let result = await promise.json()
+//     return result
+// } else {
+//     console.log("Ошибка HTTP: " + promise.status)
+// }
+
+
+// async function getUsers(names) {
+//     let jobs = []
+//     for(let num of names) {
+//         let reponse = fetch(`https://api.github.com/users/${num}`)
+//         .then(succses => {
+//             if(succses.status != 200) {
+//                 return null
+//             } else {
+//                 succses.json()
+//             }
+//         },
+//             failResponse => {
+//                 return null
+//             }
+//         )
+//         jobs.push(reponse.login)  
+//     }
+
+//     let resultSta = await Promise.all(jobs) 
+
+//     return resultSta
+// }
+
+// getUsers()
+
+
+async function peopleUsers() {
+    let users = await fetch('https://jsonplaceholder.typicode.com/users')
+    let people = await users.json()
+
+    let open = document.createElement('p')
+    open.className = 'autor'
+
+
+    people.forEach(element => {
+        open.innerHTML += element.name
+    });
+
+    document.body.append(open)
+
+} 
+
+peopleUsers()
+
+
+
+
+const newPost = {
+    title: 'foo',
+    body: 'bar',
+    userId: 1,
+}
+
+
+
+
+
+fetch('https://jsonplaceholder.typicode.com/posts', {
+    method: 'POST',
+    body: JSON.stringify(newPost),
+    headers: {
+        // Добавляем необходимые заголовки
+        'Content-type': 'application/json; charset=UTF-8',
+    },
+}) 
+
+.then((reponse) => reponse.json())
+.then((data) => console.log(data))
